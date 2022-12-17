@@ -1,0 +1,72 @@
+﻿@model List<prjHosNav.Models.CExamination>
+
+<style>
+    .logo {
+        width: 40px;
+    }
+
+    .alpha-50 {
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    header {
+        height: 300px;
+        background-image: url('https://cdn.pixabay.com/photo/2015/05/29/19/17/study-789631_1280.jpg');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
+
+</style>
+
+@{
+    ViewBag.Title = "檢驗檢查";
+}
+
+<!-- Jumbotron -->
+<header class="d-flex justify-content-center align-items-center">
+    <div class="text-center">
+        <div class="card alpha-50">
+            <div class="card-body">
+                <h4 class="fw-bold">檢驗及檢查注意事項</h4>
+                <h3 style="color:#808080"> Notice About Examinations.</h3>
+                @using (Html.BeginForm())
+                {
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="txtKeyWord" placeholder="請輸入檢驗或檢查" aria-label="關鍵字查詢" aria-describedby="button-addon2">  
+                        <button class="btn btn-primary" type="submit" id="button-addon2">查詢</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</header>
+
+<div style="background-color:#E8FBFF;" class="row justify-content-center">
+    <div class="my-5 bg-light w-75 shadow" style="border-radius:20px">
+        <h4 class="px-3 pt-4 pm-3 fw-bold">注意事項一覽表</h4>
+        <table class="table table-light table-hover table-borderless">
+            <tr class="table-active">
+                <th class="ps-4">檢驗項目</th>
+                <th>注意事項</th>
+            </tr>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr class="fw-bold">
+                        <td class="ps-4">
+                            @Html.DisplayFor(modelItem => item.fEName)
+                        </td>
+                        <td>
+                            @Html.ActionLink("查看", "查看注意事項",
+                           new { id = item.fEId }, new { Class = "btn btn-primary" })
+                        </td>
+                    </tr>
+                }
+            }
+
+
+        </table>
+    </div>
+</div>
+

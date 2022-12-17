@@ -1,0 +1,259 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首頁</title>
+
+    <style>
+        header {
+            background: url(/img/2472884.svg);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
+
+        .reveal .box {
+            position: relative;
+        }
+
+        .spacer {
+            aspect-ratio: 960/300;
+            width: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .layer1 {
+            background-image: url("/img/home/layer1.svg");
+        }
+
+        .section {
+            background: #e8fbff;
+        }
+
+        .space {
+            height: 200px;
+        }
+
+        .section video {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+        .ul-home {
+            list-style-type: none;
+            padding: 0;
+        }
+
+            .ul-home li {
+                cursor: pointer;
+                margin: 45px;
+                padding: 16px;
+                border-radius: 8px;
+                background-color: #fff;
+                box-shadow: 0 10px 70px 0 rgb(103 151 255 / 22%), 0 15px 105px 0 rgb(103 151 255 / 22%);
+                transition: all 1s ease-out;
+            }
+
+                .ul-home li:hover {
+                    opacity: 1;
+                    box-shadow: 0 10px 70px 0 rgb(103 151 255 / 55%), 0 15px 105px 0 rgb(103 151 255 / 55%);
+                    transition: all 0.5s ease 0s;
+                    fill: #00b5e6;
+                    color: #00b5e6;
+                }
+
+        .card-btn {
+            font-weight: 900;
+            font-size: 22px;
+            letter-spacing: 1px;
+            line-height: 1.4em;
+        }
+
+        svg {
+            width: 28px;
+            height: 28px;
+            margin: 0 12px 0 0;
+        }
+
+        .svgcss {
+            fill: #00b5e6;
+            color: #00b5e6;
+        }
+
+        .text-c {
+            height: 300px;
+            margin-top: 10vh;
+        }
+
+        .reveal {
+            visibility: hidden;
+        }
+
+        .alpha-50 {
+            background: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#" class="d-none d-md-block">
+        <div class="gotop">
+        </div>
+    </a>
+    @*luxy*@
+    <div id="luxy">
+        <!-- header -->
+        <header class="vh-100">
+            <div class="container h-100">
+                <div class="row align-items-center h-100">
+                    <div class="col-md-5">
+                        <div class="btn btn-outline-primary fs-2 rounded-pill mb-3" style="background-color: rgba(129, 236, 236, 0.7);">
+                            <img src="~/img/看哪科.png" style="width: 10%;" class="me-1" />@Html.ActionLink("看哪一科", "List", "Search")
+                        </div>
+                        <div class="btn btn-outline-primary fs-2 rounded-pill mb-3" style="background-color: rgba(129, 236, 236, 0.7);">
+                            <img src="~/img/門診.png" style="width: 10%;" class="me-1" />@Html.ActionLink("門診掛號", "List", "Outpatient")
+                        </div>
+                        <div class="btn btn-outline-primary fs-2 rounded-pill mb-3" style="background-color: rgba(129, 236, 236, 0.7);">
+                            <img src="~/img/檢驗檢查.png" style="width: 10%;" class="me-1" />@Html.ActionLink("檢驗檢查", "ExamList", "Examination")
+                        </div>
+                        <div class="btn btn-outline-primary fs-2 rounded-pill mb-3" style="background-color: rgba(129, 236, 236, 0.7);">
+                            <img src="~/img/doctor.png" style="width: 10%;" class="me-1" />@Html.ActionLink("回診紀錄", "Return", "Return")
+                        </div>
+                        <div class="btn btn-outline-primary fs-2 rounded-pill mb-3" style="background-color: rgba(129, 236, 236, 0.7);">
+                            <img src="~/img/用藥.png" style="width: 10%;" class="me-1" />@Html.ActionLink("用藥查詢", "List", "Medicine")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+        <header class="d-flex justify-content-center align-items-center spacer layer1">
+            <div class="text-c d-grid gap-3">
+                <h1 class="hidden-text"></h1>
+                <h1 class="hidden-text">網頁導覽</h1>
+            </div>
+        </header>
+        <div class="section container-fluid d-flex">
+            <div class="row g-0">
+                <div class="col-12 col-lg-8 order-lg-2 my-auto">
+                    <div class="reveal">
+                        <div class="box">
+                            <video id="v1" muted playsinline controls autoplay>
+                                <source src="/img/home/search.mp4" type="video/mp4" />
+                            </video>
+                            <video id="v2" class="d-none" muted playsinline controls autoplay>
+                                <source src="/img/home/video1.mp4" type="video/mp4" />
+                            </video>
+                            <video id="v3" class="d-none" muted playsinline controls autoplay>
+                                <source src="/img/home/oupatient.mp4" type="video/mp4" />
+                            </video>
+                            <video id="v4" class="d-none" muted playsinline controls autoplay>
+                                <source src="/img/home/examination.mp4" type="video/mp4" />
+                            </video>
+                            <video id="v5" class="d-none" muted playsinline controls autoplay>
+                                <source src="/img/home/search.mp4" type="video/mp4" />
+                            </video>
+                            <video id="v6" class="d-none" muted playsinline controls autoplay>
+                                <source src="/img/home/video4.mp4" type="video/mp4" />
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="
+              col-6 col-lg-2
+              order-lg-1
+              d-flex
+              justify-content-center
+              align-items-center
+            ">
+                    <ul class="ul-home">
+                        <li onclick="videoUrl('v1')">
+                            <div class="card-btn me-3">
+                                <svg viewBox="0 0 28 28">
+                                    <path d="M11,19V9l8,5L11,19z"></path>
+                                    <path class="transparent"
+                                          d="M14,2c6.62,0,12,5.38,12,12s-5.38,12-12,12S2,20.62,2,14S7.38,2,14,2 M14,0C6.27,0,0,6.27,0,14 c0,7.73,6.27,14,14,14s14-6.27,14-14C28,6.27,21.73,0,14,0L14,0z"></path>
+                                </svg>
+                                會員系統
+                            </div>
+                        </li>
+                        <li onclick="videoUrl('v2')">
+                            <div class="card-btn me-3">
+                                <svg viewBox="0 0 28 28">
+                                    <path d="M11,19V9l8,5L11,19z"></path>
+                                    <path class="transparent"
+                                          d="M14,2c6.62,0,12,5.38,12,12s-5.38,12-12,12S2,20.62,2,14S7.38,2,14,2 M14,0C6.27,0,0,6.27,0,14 c0,7.73,6.27,14,14,14s14-6.27,14-14C28,6.27,21.73,0,14,0L14,0z"></path>
+                                </svg>
+                                看哪一科
+                            </div>
+                        </li>
+                        <li onclick="videoUrl('v3')">
+                            <div class="card-btn me-3">
+                                <svg viewBox="0 0 28 28">
+                                    <path d="M11,19V9l8,5L11,19z"></path>
+                                    <path class="transparent"
+                                          d="M14,2c6.62,0,12,5.38,12,12s-5.38,12-12,12S2,20.62,2,14S7.38,2,14,2 M14,0C6.27,0,0,6.27,0,14 c0,7.73,6.27,14,14,14s14-6.27,14-14C28,6.27,21.73,0,14,0L14,0z"></path>
+                                </svg>
+                                門診掛號
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="
+              col-6 col-lg-2
+              order-lg-3
+              d-flex
+              justify-content-center
+              align-items-center
+            ">
+                    <ul class="ul-home">
+                        <li onclick="videoUrl('v4')">
+                            <div class="card-btn me-3">
+                                <svg viewBox="0 0 28 28">
+                                    <path d="M11,19V9l8,5L11,19z"></path>
+                                    <path class="transparent"
+                                          d="M14,2c6.62,0,12,5.38,12,12s-5.38,12-12,12S2,20.62,2,14S7.38,2,14,2 M14,0C6.27,0,0,6.27,0,14 c0,7.73,6.27,14,14,14s14-6.27,14-14C28,6.27,21.73,0,14,0L14,0z"></path>
+                                </svg>
+                                檢驗檢查
+                            </div>
+                        </li>
+                        <li onclick="videoUrl('v5')">
+                            <div class="card-btn me-3">
+                                <svg viewBox="0 0 28 28">
+                                    <path d="M11,19V9l8,5L11,19z"></path>
+                                    <path class="transparent"
+                                          d="M14,2c6.62,0,12,5.38,12,12s-5.38,12-12,12S2,20.62,2,14S7.38,2,14,2 M14,0C6.27,0,0,6.27,0,14 c0,7.73,6.27,14,14,14s14-6.27,14-14C28,6.27,21.73,0,14,0L14,0z"></path>
+                                </svg>
+                                我的藥盒
+                            </div>
+                        </li>
+                        <li onclick="videoUrl('v6')">
+                            <div class="card-btn me-3">
+                                <svg viewBox="0 0 28 28">
+                                    <path d="M11,19V9l8,5L11,19z"></path>
+                                    <path class="transparent"
+                                          d="M14,2c6.62,0,12,5.38,12,12s-5.38,12-12,12S2,20.62,2,14S7.38,2,14,2 M14,0C6.27,0,0,6.27,0,14 c0,7.73,6.27,14,14,14s14-6.27,14-14C28,6.27,21.73,0,14,0L14,0z"></path>
+                                </svg>
+                                回診紀錄
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="section space"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/luxy.min.js"></script>
+    <script src="~/Scripts/HomeIndex.js"></script>
+</body>
+
+</html>

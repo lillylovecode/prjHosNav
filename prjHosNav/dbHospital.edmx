@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbHospitalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tExamination">
+          <Key>
+            <PropertyRef Name="fEId" />
+          </Key>
+          <Property Name="fEId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fEName" Type="nvarchar" MaxLength="50" />
+          <Property Name="fENotice" Type="nvarchar(max)" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'dbHospital.dbo.tHospital' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="tHospital">
+          <Property Name="hId" Type="nvarchar" MaxLength="50" />
+          <Property Name="hName" Type="nvarchar" MaxLength="50" />
+          <Property Name="hKeyword" Type="nvarchar" MaxLength="50" />
+          <Property Name="hPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="hAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="hWebsite" Type="nvarchar(max)" />
+          <Property Name="hProgress" Type="nvarchar(max)" />
+          <Property Name="hOutpatient" Type="nvarchar(max)" />
+          <Property Name="hPhoto" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
+        <EntityType Name="tMedicine">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fChName" Type="nvarchar(max)" />
+          <Property Name="fEnName" Type="nvarchar(max)" />
+          <Property Name="fSymptoms" Type="nvarchar(max)" />
+          <Property Name="fCaution" Type="nvarchar(max)" />
+          <Property Name="fImagePath" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tMember">
+          <Key>
+            <PropertyRef Name="MId" />
+          </Key>
+          <Property Name="MId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="MPassword" Type="nvarchar" MaxLength="50" />
+          <Property Name="MPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="MGender" Type="nvarchar" MaxLength="50" />
+          <Property Name="MAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="MAuthority" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tMyMedicineBox">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fChName" Type="nvarchar(max)" />
+          <Property Name="fImagePath" Type="nvarchar(max)" />
+          <Property Name="fDayOfUse" Type="nvarchar(max)" />
+          <Property Name="fQuantityUse" Type="nvarchar(max)" />
+          <Property Name="MId" Type="int" />
+        </EntityType>
+        <EntityType Name="tOutpatient">
+          <Key>
+            <PropertyRef Name="oid" />
+          </Key>
+          <Property Name="oid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="outpatientName" Type="nvarchar" MaxLength="50" />
+          <Property Name="doctor" Type="nvarchar" MaxLength="50" />
+          <Property Name="photo" Type="nvarchar" MaxLength="50" />
+          <Property Name="hId" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tReturn">
+          <Key>
+            <PropertyRef Name="RId" />
+          </Key>
+          <Property Name="RId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RType" Type="nvarchar" MaxLength="50" />
+          <Property Name="RHospital" Type="nvarchar" MaxLength="50" />
+          <Property Name="RDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="MId" Type="int" />
+        </EntityType>
+        <EntityType Name="tSearch">
+          <Key>
+            <PropertyRef Name="SId" />
+          </Key>
+          <Property Name="SId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SType" Type="nvarchar(max)" />
+          <Property Name="SDisease" Type="nvarchar(max)" />
+          <Property Name="SSymptom" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_tMyMedicineBox_tMember">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tMyMedicineBox" Type="Self.tMyMedicineBox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="MId" />
+            </Principal>
+            <Dependent Role="tMyMedicineBox">
+              <PropertyRef Name="MId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbHospitalModelStoreContainer">
+          <EntitySet Name="tExamination" EntityType="Self.tExamination" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tMedicine" EntityType="Self.tMedicine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tMember" EntityType="Self.tMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tMyMedicineBox" EntityType="Self.tMyMedicineBox" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tOutpatient" EntityType="Self.tOutpatient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tReturn" EntityType="Self.tReturn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tSearch" EntityType="Self.tSearch" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tMyMedicineBox_tMember" Association="Self.FK_tMyMedicineBox_tMember">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tMyMedicineBox" EntitySet="tMyMedicineBox" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbHospitalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tExamination">
+          <Key>
+            <PropertyRef Name="fEId" />
+          </Key>
+          <Property Name="fEId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fEName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fENotice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tMedicine">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fChName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fEnName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fSymptoms" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fCaution" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tMember">
+          <Key>
+            <PropertyRef Name="MId" />
+          </Key>
+          <Property Name="MId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MGender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MAuthority" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tMyMedicineBox" Relationship="Self.FK_tMyMedicineBox_tMember" FromRole="tMember" ToRole="tMyMedicineBox" />
+        </EntityType>
+        <EntityType Name="tMyMedicineBox">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fChName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fDayOfUse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fQuantityUse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MId" Type="Int32" />
+          <NavigationProperty Name="tMember" Relationship="Self.FK_tMyMedicineBox_tMember" FromRole="tMyMedicineBox" ToRole="tMember" />
+        </EntityType>
+        <EntityType Name="tOutpatient">
+          <Key>
+            <PropertyRef Name="oid" />
+          </Key>
+          <Property Name="oid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="outpatientName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="doctor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="hId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tReturn">
+          <Key>
+            <PropertyRef Name="RId" />
+          </Key>
+          <Property Name="RId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RHospital" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tSearch">
+          <Key>
+            <PropertyRef Name="SId" />
+          </Key>
+          <Property Name="SId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SDisease" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SSymptom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_tMyMedicineBox_tMember">
+          <End Type="Self.tMember" Multiplicity="0..1" Role="tMember">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Self.tMyMedicineBox" Multiplicity="*" Role="tMyMedicineBox" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="MId" />
+            </Principal>
+            <Dependent Role="tMyMedicineBox">
+              <PropertyRef Name="MId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbHospitalEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tExamination" EntityType="Self.tExamination" />
+          <EntitySet Name="tMedicine" EntityType="Self.tMedicine" />
+          <EntitySet Name="tMember" EntityType="Self.tMember" />
+          <EntitySet Name="tMyMedicineBox" EntityType="Self.tMyMedicineBox" />
+          <EntitySet Name="tOutpatient" EntityType="Self.tOutpatient" />
+          <EntitySet Name="tReturn" EntityType="Self.tReturn" />
+          <EntitySet Name="tSearch" EntityType="Self.tSearch" />
+          <AssociationSet Name="FK_tMyMedicineBox_tMember" Association="Self.FK_tMyMedicineBox_tMember">
+            <End EntitySet="tMember" Role="tMember" />
+            <End EntitySet="tMyMedicineBox" Role="tMyMedicineBox" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbHospitalModelStoreContainer" CdmEntityContainer="dbHospitalEntities1">
+          <EntitySetMapping Name="tExamination">
+            <EntityTypeMapping TypeName="dbHospitalModel.tExamination">
+              <MappingFragment StoreEntitySet="tExamination">
+                <ScalarProperty Name="fEId" ColumnName="fEId" />
+                <ScalarProperty Name="fEName" ColumnName="fEName" />
+                <ScalarProperty Name="fENotice" ColumnName="fENotice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tMedicine">
+            <EntityTypeMapping TypeName="dbHospitalModel.tMedicine">
+              <MappingFragment StoreEntitySet="tMedicine">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fChName" ColumnName="fChName" />
+                <ScalarProperty Name="fEnName" ColumnName="fEnName" />
+                <ScalarProperty Name="fSymptoms" ColumnName="fSymptoms" />
+                <ScalarProperty Name="fCaution" ColumnName="fCaution" />
+                <ScalarProperty Name="fImagePath" ColumnName="fImagePath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tMember">
+            <EntityTypeMapping TypeName="dbHospitalModel.tMember">
+              <MappingFragment StoreEntitySet="tMember">
+                <ScalarProperty Name="MId" ColumnName="MId" />
+                <ScalarProperty Name="MName" ColumnName="MName" />
+                <ScalarProperty Name="MEmail" ColumnName="MEmail" />
+                <ScalarProperty Name="MPassword" ColumnName="MPassword" />
+                <ScalarProperty Name="MPhone" ColumnName="MPhone" />
+                <ScalarProperty Name="MGender" ColumnName="MGender" />
+                <ScalarProperty Name="MAddress" ColumnName="MAddress" />
+                <ScalarProperty Name="MAuthority" ColumnName="MAuthority" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tMyMedicineBox">
+            <EntityTypeMapping TypeName="dbHospitalModel.tMyMedicineBox">
+              <MappingFragment StoreEntitySet="tMyMedicineBox">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fChName" ColumnName="fChName" />
+                <ScalarProperty Name="fImagePath" ColumnName="fImagePath" />
+                <ScalarProperty Name="fDayOfUse" ColumnName="fDayOfUse" />
+                <ScalarProperty Name="fQuantityUse" ColumnName="fQuantityUse" />
+                <ScalarProperty Name="MId" ColumnName="MId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tOutpatient">
+            <EntityTypeMapping TypeName="dbHospitalModel.tOutpatient">
+              <MappingFragment StoreEntitySet="tOutpatient">
+                <ScalarProperty Name="oid" ColumnName="oid" />
+                <ScalarProperty Name="outpatientName" ColumnName="outpatientName" />
+                <ScalarProperty Name="doctor" ColumnName="doctor" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="hId" ColumnName="hId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tReturn">
+            <EntityTypeMapping TypeName="dbHospitalModel.tReturn">
+              <MappingFragment StoreEntitySet="tReturn">
+                <ScalarProperty Name="RId" ColumnName="RId" />
+                <ScalarProperty Name="RType" ColumnName="RType" />
+                <ScalarProperty Name="RHospital" ColumnName="RHospital" />
+                <ScalarProperty Name="RDate" ColumnName="RDate" />
+                <ScalarProperty Name="MId" ColumnName="MId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tSearch">
+            <EntityTypeMapping TypeName="dbHospitalModel.tSearch">
+              <MappingFragment StoreEntitySet="tSearch">
+                <ScalarProperty Name="SId" ColumnName="SId" />
+                <ScalarProperty Name="SType" ColumnName="SType" />
+                <ScalarProperty Name="SDisease" ColumnName="SDisease" />
+                <ScalarProperty Name="SSymptom" ColumnName="SSymptom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

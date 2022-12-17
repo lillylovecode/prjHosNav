@@ -1,0 +1,97 @@
+﻿@using prjHosNav.Models;
+@model List<prjHosNav.Models.CMedicineDetail>
+
+<style>
+    .alpha-50 {
+        background: rgba(255, 255, 255, 0.6);
+    }
+
+    header {
+        height: 300px;
+        background-image: url('https://images.pexels.com/photos/3683051/pexels-photo-3683051.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        /*background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('') no-repeat center/cover;*/
+    }
+
+    pre {
+        white-space: pre-wrap; /* css-3 */
+        white-space: -moz-pre-wrap !important; /* Mozilla, since 1999*/
+        white-space: -pre-wrap; /* Opera 4-6 */
+        white-space: -o-pre-wrap; /* Opera 7 */
+        word-wrap: break-word; /* Internet Explorer 5.5+ */
+    }
+</style>
+
+@{
+    ViewBag.Title = "藥物檢視";
+}
+
+<header class="d-flex justify-content-center align-items-center">
+    <div class="text-center">
+        <div class="card alpha-50">
+            <div class="card-body">
+                <h2 class="fw-bold">藥物查詢</h2>
+                <h3 style="color:#808080">Search Your Medication</h3>
+                @using (Html.BeginForm())
+                {
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="txtKeyWord" placeholder="請輸入關鍵字" aria-label="關鍵字查詢" aria-describedby="button-addon2">
+                        <button class="btn btn-primary" type="submit" id="button-addon2">查詢</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<div style="background-color:#E8FBFF;" class="row justify-content-center">
+    <div class="my-5 bg-light w-75 shadow" style="border-radius:20px">
+        <h4 class="px-3 pt-4 pm-3 fw-bold">藥物資料一覽表</h4>
+        <p>
+            @Html.ActionLink("新增藥物", "Create", "Medicine", null, new { @class = "btn btn-primary" })
+        </p>
+        <table class="table table-striped table-hover" style="width: 100%">
+            <tr>
+                <td>序號</td>
+                <td width="400px">藥品名稱</td>
+                <td>藥品適用症狀</td>
+                <td>藥品注意事項</td>
+                <td>修改</td>
+                <td>刪除</td>
+            </tr>
+            @{
+                int count = 0;
+                foreach (CMedicineDetail c in Model)
+                {
+                    count++;
+                    <tr>
+                        <td>@count</td>
+                        <td>
+                            <img src="~/img/MImg/@c.fImagePath" width="100" height="80" onerror="this.src = '/img/MImg/default.jpg'" align="left" hspace="10" />
+                            <!--   也可用onerror="this.src='/default_avatars.jpg';this.onerror=null"   -->
+                            <b style="font-size: 1.2em">@c.fChName</b>   <br />
+                            @c.fEnName
+                        </td>
+                        <td>@c.fSymptoms</td>
+                        <td>
+                            <pre>@c.fCaution</pre>
+                        </td>
+                        <td>
+                            @Html.ActionLink("編輯", "Edit", "Medicine", new { id = c.fId },
+                           new { @class = "btn btn-success" })
+                        </td>
+                        <td>
+                            @Html.ActionLink("刪除", "Delete", "Medicine", new { id = c.fId },
+                           new { onclick = "return confirm('確定要刪除嗎?')", @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</div>
+

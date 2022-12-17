@@ -1,0 +1,177 @@
+﻿@{
+    ViewBag.Title = "回診紀錄";
+}
+@using prjHosNav.Models;
+@{
+    int userID = 0;
+    if (Session[CDictionary.SK_LOGINED_USER] != null)
+    {
+        userID = (Session[CDictionary.SK_LOGINED_USER] as CMember).mId;
+    }
+}
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/Return.js"></script>
+
+<style>
+    body {
+        background-color: #e8fbff;
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .alpha-50 {
+        background: rgba(255, 255, 255, 0.6);
+    }
+
+    .text {
+        font-size: 14px;
+    }
+
+    .item {
+        margin-bottom: 18px;
+    }
+
+    header {
+        height: 300px;
+        background-image: url('https://cdn.pixabay.com/photo/2015/05/29/19/17/study-789631_1280.jpg');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
+
+    .el-table .warning-row {
+        background: oldlace;
+    }
+
+    .el-table .success-row {
+        background: #f0f9eb;
+    }
+</style>
+<header class="d-flex justify-content-center align-items-center">
+    <div class="text-center">
+        <div class="card alpha-50">
+            <div class="card-body">
+                <h2 class="fw-bold">回診紀錄</h2>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="app">
+    <div class="d-none" ref="userID">@userID</div>
+    <el-card class="box-card">
+        <template #header>
+            <div class="card-header">
+                <span>回診紀錄</span>
+                <el-button size="small" type="success" data-bs-toggle="modal" data-bs-target="#myModal" @@click="clearTextBox();">新增資料</el-button>
+            </div>
+        </template>
+        <div>
+            <el-table :data="tableData"
+                      border
+                      max-height="1200"
+                      :header-cell-style="{
+                     'background-color': '#1989fa',
+                     'color': '#fff',
+                     'font-weight': '400'}">
+                style="width: 100%"
+                :row-class-name="tableRowClassName"
+                :default-sort = "{prop: 'date', order: 'descending'}">
+                <el-table-column prop="RHospital"
+                                 label="醫院"
+                                 width="530"
+                                 max-height="250">
+                </el-table-column>
+                <el-table-column prop="RDate"
+                                 label="回診日期"
+                                 width="530"
+                                 sortable
+                                 max-height="250">
+                </el-table-column>
+                <el-table-column prop="RType"
+                                 label="科別"
+                                 width="auto"
+                                 align="center">
+                </el-table-column>
+                <el-table-column label="操作" width="145">
+                    <template #default="scope">
+                        <el-button size="mini"
+                                   type="primary"
+                                   @@click="getbyID(scope.row.RId)">編輯</el-button>
+                        <el-button size="mini"
+                                   type="danger"
+                                   @@click.prevent="Delele(scope.row.RId)">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </div>
+    </el-card>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">回診紀錄</h4>
+                    <el-button class="close" data-bs-dismiss="modal" icon="el-icon-close" circle></el-button>
+                </div>
+                <div class="modal-body">
+                    <el-form>
+                        <div class="form-group">
+                            <el-divider content-position="left">編號</el-divider>
+                            <input type="text" id="RId" class="form-control" disabled="disabled" />
+                        </div>
+                        <div class="form-group">
+                            <el-divider content-position="left">會員編號</el-divider>
+                            <input type="text" id="MId" class="form-control" disabled="disabled" value="@userID" />
+                        </div>
+                        <div class="form-group">
+                            <el-divider content-position="left">科別</el-divider>
+                            <input type="text" id="RType" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <el-divider content-position="left">醫院</el-divider>
+                            <input type="text" id="RHospital" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <el-divider content-position="left">回診日期</el-divider>
+                            <input id="RDate" type="date" min="today" class="form-control">
+                        </div>
+                    </el-form>
+                </div>
+                <div class="modal-footer">
+                    <span class="dialog-footer">
+                        <button class="btn btn-outline-primary" round id="btnAdd" onclick="return Add();">新增</button>
+                        <button class="btn btn-outline-primary" round id="btnUpdate" style="display:none;" onclick="Update();">更新</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+        today = yyyy + '-' + mm + '-' + dd;
+        document.getElementById("RDate").setAttribute("min", today);
+    </script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="//unpkg.com/element-plus"></script>
+    <link rel="stylesheet" href="//unpkg.com/element-plus/dist/index.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="~/Scripts/ReturnVue.js"></script>
+}

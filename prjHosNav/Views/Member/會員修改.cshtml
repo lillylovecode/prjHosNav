@@ -1,0 +1,58 @@
+﻿@model prjHosNav.Models.CMember
+@using prjHosNav.ViewModel
+@{
+    ViewBag.Title = "會員修改";
+}
+<div style="background-color:#E8FBFF;" class="vh-100 pt-5">
+    <div class="container shadow p-3 bg-body rounded">
+        <div class="row bg-white g-0 rounded-3 align-items-center">
+            <div class="col-md-7">
+                <img class="w-100 rounded-start" src="~/img/20944201.jpg" alt="">
+            </div>
+            <div class="col-md-5 mt-2">
+                @using (Html.BeginForm("會員修改", "Member", FormMethod.Post, null))
+                {
+                    @Html.HiddenFor(Model => Model.mId)
+                    <div class="mb-3">
+                        <label for="txtEmil" class="form-label">信箱</label>
+                        @Html.TextBoxFor(m => m.mEmail, new { @class = "form-control", @disabled = true })
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtName" class="form-label">姓名</label>
+                        @Html.TextBoxFor(m => m.mName, new { @class = "form-control" })
+                    </div>
+                    <p>
+                        密碼:
+                        <input type="password" name="mPassword" class="form-control" />
+                    </p>
+                    <div class="mb-3">
+                        <label for="txtPwdCheck" class="form-label">確認密碼</label>
+                        @Html.TextBox("mPwdCheck", null, new { @class = "form-control", @type = "password", @required = true })
+                        @Html.ValidationMessageFor(model => model.mPwdCheck, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtPhone" class="form-label">電話</label>
+                        @Html.TextBoxFor(m => m.mPhone, new { @class = "form-control" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtGender" class="form-label">性別</label><br />
+                        男 @Html.RadioButtonFor(m => m.mGender, "男", new { @class = "form-check-input" })
+                        女 @Html.RadioButtonFor(m => m.mGender, "女", new { @class = "form-check-input" })
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary w-50 rounded-pill">送出</button>
+                    </div>
+                }
+            </div>
+        </div>
+     </div>
+ </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    <script>
+        $('form').submit(function () {
+            return confirm('確定要送出嗎?')
+        })
+    </script>
+
+

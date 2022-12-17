@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "後台管理";
+}
+
+<style>
+    .alpha-50 {
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    header {
+        height: 300px;
+        background-image: url('https://cdn.pixabay.com/photo/2015/05/29/19/17/study-789631_1280.jpg');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
+
+    .box{
+        height:300px;
+        border-radius: 10px;
+        cursor: pointer;
+        margin: 10px 15px;
+        background-image: url('https://i.pinimg.com/564x/d0/26/47/d026474b768a132884bc1a85a9274c55.jpg');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
+
+    .box:hover {
+        transition: 1s;
+        transform: scale(1.1);
+    }
+</style>
+
+
+
+<!-- Jumbotron -->
+<header class="d-flex justify-content-center align-items-center">
+    <div class="text-center">
+        <div class="card alpha-50">
+            <div class="card-body">
+                <h1 class="fw-bold">後台管理</h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-4">@Html.ActionLink("門診管理", "outpatient", "Home", null,new { @class= "d-flex justify-content-center align-items-center box fs-2" })</div>
+        <div class="col-md-4">@Html.ActionLink("藥物管理", "ListAdmin", "Medicine", null, new { @class = "d-flex justify-content-center align-items-center box fs-2" })</div>
+        <div class="col-md-4">@Html.ActionLink("症狀查詢管理", "Search", "Home", null, new { @class = "d-flex justify-content-center align-items-center box fs-2" })</div>
+    </div>    
+</div>

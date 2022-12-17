@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "outpatient";
+}
+
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/outpatient.js"></script>
+
+<style>
+    .alpha-50 {
+        background: rgba(255, 255, 255, 0.9);
+    }
+
+    header {
+        height: 300px;
+        background-image: url('https://cdn.pixabay.com/photo/2015/05/29/19/17/study-789631_1280.jpg');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
+</style>
+<!-- Jumbotron -->
+<header class="d-flex justify-content-center align-items-center">
+    <div class="text-center">
+        <div class="card alpha-50">
+            <div class="card-body">
+                <h4 class="fw-bold">門診管理</h4>              
+            </div>
+        </div>
+    </div>
+</header>
+
+<!--Table-->
+<div style="background-color:#E8FBFF;" class="row justify-content-center">
+    <div class="my-5 bg-light w-75 shadow" style="border-radius:20px">
+        <div class="d-flex align-items-center px-3 py-4 ">
+            <h3 class="fw-bold me-auto">門診列表</h3>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary mx-3" data-bs-toggle="modal" data-bs-target="#myModal" onclick="clearTextBox();">新增門診</button>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover text-center">
+                <thead>
+                    <tr>
+                        <th scope="col" nowrap>
+                            門診ID
+                        </th>
+                        <th scope="col" nowrap>
+                            門診名
+                        </th>
+                        <th scope="col" nowrap>
+                            醫師名
+                        </th>
+                        <th scope="col">
+                            操作
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="tbody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--Modal-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-bs-dismiss="modal">×</button>
+                <h4 class="modal-title" id="myModalLabel">門診管理</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="oid">ID</label>
+                        <input type="text" class="form-control" id="oid" disabled="disabled" />
+                    </div>
+                    <div class="form-group">
+                        <label for="oName">門診名</label>
+                        <input type="text" class="form-control" id="oName" />
+                    </div>
+                    <div class="form-group">
+                        <label for="oDoctor">醫師名</label>
+                        <input type="text" class="form-control" id="oDoctor" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
+                <button type="button" class="btn btn-success" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

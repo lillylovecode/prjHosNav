@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>醫療快速通關小幫手-@ViewBag.Title </title>
+    <link href="~/Content/all.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    @RenderSection("css", required: false)
+    @if (TempData["message"] != null)
+        {
+        <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["message"]));
+        alert(message);
+        </script>
+    }
+    <style>
+        .icon-sm {
+            width: 50px;
+            margin-right: 1rem;
+            display: flex;
+        }
+
+        .icon-nav {
+            width: 20px;
+            height: 20px;
+            margin-top: 0.5rem;
+            display: inline;
+        }
+
+        .nav-item {
+            display: flex;
+            margin-right: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .nav-item:hover {
+            margin-top: 0;
+            transition: 1s;
+            transform: scale(1.3);
+        }
+    </style>
+</head>
+@using prjHosNav.Models;
+@{
+    string userName = "";
+    string userAuthority = "";
+    if (Session[CDictionary.SK_LOGINED_USER] != null)
+    {
+        userName = (Session[CDictionary.SK_LOGINED_USER] as CMember).mName + "您好";
+        userAuthority=(Session[CDictionary.SK_LOGINED_USER] as CMember).mAuthority;
+    }
+}
+<body>
+    <!--navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <a href="/Home/Index"><img src="~/img/logo.svg" class="icon-sm" />@Html.ActionLink("醫院快速通關小幫手", "Index", "Home", new { area = "" }, new { @class = "navbar-brand fw-bold", style = "color:#EDCAB7; text-shadow: 0.1em 0.1em 0.2em black" })</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0 me-auto">
+                    <li class="nav-item">
+                        <a href="/Search/Search2"><img src="~/img/看哪科.png" class="icon-nav" /></a>
+                        <a aria-current="page">@Html.ActionLink("看哪一科", "Search2", "Search", null, new { @class = "flex-sm-fill text-sm-start nav-link active" })</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/Outpatient/List"><img src="~/img/門診.png" class="icon-nav" /></a>
+                        <a aria-current="page">@Html.ActionLink("門診掛號", "List", "Outpatient", null, new { @class = "flex-sm-fill text-sm-start nav-link active" })</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/Examination/ExamList"><img src="~/img/檢驗檢查.png" class="icon-nav" /></a>
+                        <a aria-current="page">@Html.ActionLink("檢驗檢查", "ExamList", "Examination", null, new { @class = "flex-sm-fill text-sm-start nav-link active" })</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/Examination/ExamList"><img src="~/img/doctor.png" class="icon-nav" /></a>
+                        <a aria-current="page">@Html.ActionLink("回診紀錄", "Return", "Return", null, new { @class = "flex-sm-fill text-sm-start nav-link active" })</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/Medicine/List"><img src="~/img/用藥.png" class="icon-nav" /></a>
+                        <a aria-current="page">@Html.ActionLink("用藥查詢", "List", "Medicine", null, new { @class = "flex-sm-fill text-sm-start nav-link active" })</a>
+                    </li>
+                </ul>
+                <!-- Button trigger modal -->
+                @{
+                    if (Session[CDictionary.SK_LOGINED_USER] != null)
+                    {
+                        <!-- Example single danger button -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle me-2"></i>@userName
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("會員修改", "會員修改", "Member", null, new { @class = "dropdown-item" })</li>
+                                @if (userAuthority == "管理者")
+                                {
+                                <li>@Html.ActionLink("後台管理", "ManageList", "Management", null, new { @class = "dropdown-item" })</li>
+                                }
+                                <li>
+                                    @Html.ActionLink("我的藥盒", "myBox", "Medicine", null, new { @class = "dropdown-item" })
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>@Html.ActionLink("登出", "Logout", "Home", null, new { @class = "dropdown-item" })</li>
+                            </ul>
+                        </div>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-primary px-4 rounded-pill" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            登入
+                        </button>
+                        <div class="btn btn-outline-primary text-secondary px-4 rounded-pill ms-3">@Html.ActionLink("註冊", "會員註冊", "Member")</div>
+                    }
+                }
+            </div>
+        </div>
+    </nav>
+    <!-- Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">登入</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("Login", "Home"))
+                    {
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">帳號</label>
+                            @Html.TextBox("txtEmail", null, new { @class = "form-control", @type = "email", @required = true })
+                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">密碼</label>
+                            @Html.TextBox("txtPassword", null, new { @class = "form-control", @type = "password", @required = true })
+                        </div>
+                        <a href="" class="my-3 d-block">忘記密碼？</a>
+                        <button type="submit" class="btn btn-primary w-100 rounded-pill">登入</button>
+                        <div class="my-4 position-relative">
+                            <div class="progress" style="height: 1px;">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="fs-6 position-absolute top-0 start-50 text-muted translate-middle text-center bg-white px-3">還沒有帳號？@Html.ActionLink("註冊一個", "會員註冊", "Member", null, new { @class = "link-danger" })</div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="body-content">
+        @RenderBody()
+        @RenderSection("scripts", required: false)
+        @RenderSection("Styles", required: false)
+    </div>
+
+    @*<footer class="text-center" style="background-color: #EEE;">
+            <p>&copy; @DateTime.Now.Year - 醫級棒資訊科技 版權所有</p>
+        </footer>*@
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

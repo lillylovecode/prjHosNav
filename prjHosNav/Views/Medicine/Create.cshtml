@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "新增藥物";
+}
+
+<style>
+    .alpha-50 {
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    header {
+        height: 300px;
+        background-image: url('https://images.pexels.com/photos/3683051/pexels-photo-3683051.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        /*background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('') no-repeat center/cover;*/
+    }
+
+    pre {
+        white-space: pre-wrap; /* css-3 */
+        white-space: -moz-pre-wrap !important; /* Mozilla, since 1999*/
+        white-space: -pre-wrap; /* Opera 4-6 */
+        white-space: -o-pre-wrap; /* Opera 7 */
+        word-wrap: break-word; /* Internet Explorer 5.5+ */
+    }
+</style>
+
+<header class="d-flex justify-content-center align-items-center">
+    <div class="text-center">
+        <div class="card alpha-50">
+            <div class="card-body">
+                <h2 class="fw-bold">新增藥物</h2>
+                <h3 style="color:#808080">Create Medication</h3>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div style="background-color:#E8FBFF;" class="row justify-content-center">
+    <div class="my-5 bg-light w-75 shadow" style="border-radius:20px">
+        <div class="m-5">
+            <form method="post" action="~/medicine/Save" enctype="multipart/form-data">
+                <p>
+                    藥物中文名稱<br />
+                    <input type="text" class="form-control" name="fChName" />
+                </p>
+                <p>
+                    藥物英文名稱<br />
+                    <input type="text" class="form-control" name="fEnName" />
+                </p>
+                <p>
+                    適應症狀<br />
+                    <input type="text" class="form-control" name="fSymptoms" />
+                </p>
+                <p>
+                    注意事項<br />
+                    <input type="text" class="form-control" name="fCaution" />
+                </p>
+                <p>
+                    圖片路徑<br />
+                    <input type="file" class="form-control" name="fImagePath" />
+                </p>
+                <p>
+                    <input type="submit" class="btn btn-dark col-md-3" value="送出" />
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+

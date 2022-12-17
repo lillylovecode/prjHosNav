@@ -1,0 +1,133 @@
+﻿@model prjHosNav.Models.CMyMedicineBoxDetail
+
+@{
+    ViewBag.Title = "編輯我的藥盒";
+}
+
+@*<h2>編輯我的藥盒</h2>
+
+    <form method="post">
+        <p>
+            <input type="text" name="fId" value="@Model.fId" />
+        </p>
+        <p>
+            藥物中文名稱<br />
+            <input type="text" name="fChName" value="@Model.fChName" />
+        </p>
+        <p>
+            圖片路徑<br />
+            <input type="file" name="fImagePath" />
+        </p>
+        <p>
+            一日幾次<br />
+                <input type="text" name="fDayOfUse" value="@Model.fDayOfUse" /><br />
+            <input type="checkbox" name="fDayOfUse" value="早餐" />早餐<br />
+            <input type="checkbox" name="fDayOfUse" value="午餐" />午餐<br />
+            <input type="checkbox" name="fDayOfUse" value="晚餐" />晚餐<br />
+            <input type="radio" name="fDayOfUse" value="飯前" />飯前<br />
+            <input type="radio" name="fDayOfUse" value="飯後" />飯後<br />
+
+        </p>
+        <p>
+            一次多少用量<br />
+            <input type="text" name="fQuantityUse" value="@Model.fQuantityUse" />
+        </p>
+        <p>
+            <input type="submit" value="送出" />
+        </p>
+    </form>*@
+
+
+<style>
+    .alpha-50 {
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    header {
+        height: 300px;
+        background-image: url('https://images.pexels.com/photos/3683051/pexels-photo-3683051.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        /*background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('') no-repeat center/cover;*/
+    }
+
+    pre {
+        white-space: pre-wrap; /* css-3 */
+        white-space: -moz-pre-wrap !important; /* Mozilla, since 1999*/
+        white-space: -pre-wrap; /* Opera 4-6 */
+        white-space: -o-pre-wrap; /* Opera 7 */
+        word-wrap: break-word; /* Internet Explorer 5.5+ */
+    }
+</style>
+<div id="app">
+    <header class="d-flex justify-content-center align-items-center">
+        <div class="text-center">
+            <div class="card alpha-50">
+                <div class="card-body">
+                    <h2 class="fw-bold">修改藥物</h2>
+                    <h3 style="color:#808080">Edit Medication</h3>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div style="background-color:#E8FBFF;" class="row justify-content-center">
+        <div class="my-5 bg-light w-75 shadow" style="border-radius:20px">
+            <div class="m-5">
+                <form method="post">
+                    <p>
+                        <input type="hidden" name="fId" value="@Model.fId" />
+                    </p>
+                    <p>
+                        藥物中文名稱<br />
+                        <input type="text" class="form-control" name="fChName" value="@Model.fChName" />
+                    </p>
+                    @*<p>
+                            圖片路徑<br />
+                            <input type="file" class="form-control" name="fImagePath" value="@Model.fImagePath" />
+                        </p>*@
+                <p>
+                    頻次<br />
+                    <input type="text" name="fDayOfUse" value=" " id="fDayOfUse" hidden />
+                    <input type="checkbox" value="早餐," id="breakfast" />早餐<br />
+                    <input type="checkbox" value="午餐," id="lunch" />午餐<br />
+                    <input type="checkbox" value="晚餐," id="dinner" />晚餐<br />
+                    <input type="radio" value="飯前" id="beforeMeal" />飯前<br />
+                    <input type="radio" value="飯後" id="afterMeal" />飯後<br />
+                </p>
+                    <p>
+                        一次多少用量<br />
+                        <input type="text" class="form-control" name="fQuantityUse" value="@Model.fQuantityUse" />
+                    </p>
+                    <p>
+                        <input type="submit" class="btn btn-dark col-md-3" value="送出"   onclick="ChangeWord()"/>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function ChangeWord() {
+
+
+
+        if (document.getElementById("breakfast").checked == true) {
+            document.getElementById("fDayOfUse").value += document.getElementById("breakfast").value
+        }
+        if (document.getElementById("lunch").checked == true) {
+            document.getElementById("fDayOfUse").value += document.getElementById("lunch").value
+        }
+        if (document.getElementById("dinner").checked == true) {
+            document.getElementById("fDayOfUse").value += document.getElementById("dinner").value
+        }
+        if (document.getElementById("beforeMeal").checked == true) {
+            document.getElementById("fDayOfUse").value += document.getElementById("beforeMeal").value
+        }
+        if (document.getElementById("afterMeal").checked == true) {
+            document.getElementById("fDayOfUse").value += document.getElementById("afterMeal").value
+        }
+
+    }
+</script>

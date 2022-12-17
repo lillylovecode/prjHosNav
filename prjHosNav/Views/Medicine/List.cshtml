@@ -1,0 +1,112 @@
+﻿@using prjHosNav.Models;
+@model List<prjHosNav.Models.CMedicineDetail>
+
+
+<style>
+    .alpha-50 {
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    header {
+        height: 300px;
+        background-image: url('https://images.pexels.com/photos/3683051/pexels-photo-3683051.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        /*background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('') no-repeat center/cover;*/
+    }
+
+    pre {
+        white-space: pre-wrap; /* css-3 */
+        white-space: -moz-pre-wrap !important; /* Mozilla, since 1999*/
+        white-space: -pre-wrap; /* Opera 4-6 */
+        white-space: -o-pre-wrap; /* Opera 7 */
+        word-wrap: break-word; /* Internet Explorer 5.5+ */
+    }
+</style>
+
+@{
+    ViewBag.Title = "藥物查詢";
+
+}
+<header class="d-flex justify-content-center align-items-center">
+    <div class="text-center">
+        <div class="card alpha-50">
+            <div class="card-body">
+                <h2 class="fw-bold">藥物查詢</h2>
+                <h3 style="color:#808080">Search Your Medication</h3>
+                @using (Html.BeginForm())
+                {
+            <form>
+                <div class="input-group mb-3">
+                    @Html.TextBox("txtKeyword", (string)ViewBag.Ans, new { @class = "form-control" })
+                    <button class="btn btn-primary" type="submit" id="button-addon2">查詢</button>
+                </div>
+            </form>
+
+                }
+            </div>
+        </div>
+    </div>
+</header>
+<div style="background-color:#E8FBFF;" class="row justify-content-center">
+    <div class="my-5 bg-light w-75 shadow" style="border-radius:20px">
+        <h4 class="px-3 pt-4 pm-3 fw-bold">藥物資料一覽表</h4>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered show">
+                <tr>
+                    <td nowrap>序號</td>
+                    <td nowrap>藥品名稱</td>
+                    <td nowrap>適用症狀</td>
+                    <td>注意事項</td>
+                    <td nowrap>備註</td>
+                </tr>
+                @{
+                    int count = 0;
+
+                    foreach (CMedicineDetail c in Model)
+                    {
+                        count++;
+
+                        <tr>
+                            <td>@count</td>
+                            <td width="400px">
+                                <img src="~/img/MImg/@c.fImagePath" width="100" height="80" onerror="this.src = '/img/MImg/default.jpg'" align="left" hspace="10" />
+                                <!--   也可用onerror="this.src='/default_avatars.jpg';this.onerror=niull"   -->
+                                <b style="font-size: 1.2em;">@c.fChName</b><br />
+                                @c.fEnName
+                            </td>
+                            <td>@c.fSymptoms</td>
+                            <td>
+                                <pre>@c.fCaution</pre>
+                            </td>
+                            <td>@Html.ActionLink("加入藥盒", "myBoxCreate", "Medicine", new { id = c.fId }, new { Class = "btn btn-success", @onclick = "click" })</td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function () {
+            var table = $(".show");//table
+            var replace = $("#txtKeyword").val();//目標文字
+            var reg = new RegExp(replace, 'g');
+            //render後更改
+            if (replace == "") {
+                return;
+            } else {
+                table.each(function () {
+                    var word = $(this).html();
+                    var cc = word.replace(reg, '<span style="color:#F00;font-weight: bold;background-color:yellow;">' + replace + '</span>');
+                    $(this).html(cc);
+                });
+            }
+        });
+    </script>
+}

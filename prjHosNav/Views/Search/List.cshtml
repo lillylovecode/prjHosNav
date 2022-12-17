@@ -1,0 +1,113 @@
+﻿@using prjHosNav.Models;
+@model List<prjHosNav.Models.CSearch>
+
+@{
+    ViewBag.Title = "List";
+}
+<link href="@Url.Content("~/Content/SearchSite.css")" rel="stylesheet" type="text/css" />
+
+@using (Html.BeginForm())
+{
+    <div class="d-flex align-items-center justify-content-center headerS">
+        <div class="row text-center">
+            <h1 class="pb-4 fw-bold">症狀查詢一覽表</h1>
+            <p>想看診卻不知道要選擇哪一個門診嗎? 依照症狀來使用關鍵字查詢吧!</p>
+            <div class="pt-4">
+                <form>
+                    關鍵字 @Html.TextBox("txtKeyword", (string)ViewBag.Ans, new { style = "color:#808080; width:500px" })
+                    <button class="btn btn-sm btn-success mb-1" type="submit">查詢</button>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+<div class="container pt-4">
+    <div class="d-flex">
+        <div class="pe-1">
+
+            @using (Html.BeginForm())
+            {
+                <button class="btn btn-sm btn-success mb-1">全部</button>
+                <form type="hidden">
+                    @Html.TextBox("txtKeyword", "", new { type = "hidden" })
+                </form>
+            }
+        </div>
+        <div class="px-1">
+            @using (Html.BeginForm())
+            {
+                <button class="btn btn-sm btn-success mb-1">頭部</button>
+                <form type="hidden">
+                    @Html.TextBox("txtKeyword", "頭", new { type = "hidden" })
+                </form>
+            }
+        </div>
+        <div class="px-1">
+            @using (Html.BeginForm())
+            {
+                <button class="btn btn-sm btn-success mb-1">胸部</button>
+                <form type="hidden">
+                    @Html.TextBox("txtKeyword", "胸", new { type = "hidden" })
+                </form>
+            }
+        </div>
+        <div class="px-1">
+            @using (Html.BeginForm())
+            {
+                <button class="btn btn-sm btn-success mb-1">腹部</button>
+                <form type="hidden">
+                    @Html.TextBox("txtKeyword", "腹", new { type = "hidden" })
+                </form>
+            }
+        </div>
+        <div class="px-1">
+            @using (Html.BeginForm())
+            {
+                <button class="btn btn-sm btn-success mb-1">四肢</button>
+                <form type="hidden">
+                    @Html.TextBox("txtKeyword", "四肢", new { type = "hidden" })
+                </form>
+            }
+        </div>
+    </div>
+
+    <table class="table table-sm table-bordered table-striped table-hover show">
+        <tr class="table-primary text-center align-middle">
+            <th>科別</th>
+            <th>症別</th>
+            <th>症狀</th>
+        </tr>
+        @{
+            int count = 0;
+            foreach (CSearch c in Model)
+            {
+                count++;
+                <tr>
+                    <td class="text-center fw-bold table-success">@c.SType</td>
+                    <td class="table-info">@c.SDisease</td>
+                    <td class="table-info">@c.SSymptom</td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+@section scripts{
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function () {
+            var table = $(".show");//table
+            var replace = $("#txtKeyword").val();//目標文字
+            var reg = new RegExp(replace, 'g');
+            //render後更改
+            if (replace == "") {
+                return;
+            } else {
+            table.each(function () {
+                var word = $(this).html();
+                var cc = word.replace(reg, '<span style="color:#F00;font-weight: bold;background-color:yellow;">' + replace + '</span>');
+                $(this).html(cc);
+            });
+            }
+        });
+    </script>
+}

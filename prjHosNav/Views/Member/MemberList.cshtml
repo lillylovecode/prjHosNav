@@ -1,0 +1,74 @@
+﻿@model IEnumerable<prjHosNav.tMember>
+
+@{
+    ViewBag.Title = "MemberList";
+}
+
+<h2>MemberList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MPassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MGender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MAuthority)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MPassword)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MGender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MAuthority)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.MId }, new { onclick="return confirm('確定要刪除嗎?')" } )
+        </td>
+    </tr>
+}
+
+</table>

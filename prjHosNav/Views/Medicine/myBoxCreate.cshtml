@@ -1,0 +1,38 @@
+﻿@model prjHosNav.Models.CMedicineDetail
+@{
+    ViewBag.Title = "新增我的藥盒";
+}
+<div style="background-color:#E8FBFF;" class="vh-100 pt-5">
+    <div class="container shadow p-3 bg-body rounded">
+        <div class="row bg-white rounded-3 align-items-center justify-content-center">
+            <div class="col-md-4">
+                <form method="post" action="~/medicine/myBoxSave">  
+                    <div class="mb-3 d-flex flex-nowrap align-items-center justify-content-center">
+                        <img src="~/img/MImg/@Model.fImagePath" width="100" height="80" onerror="this.src = '/img/MImg/default.jpg'" align="left" hspace="10" />
+                        <input type="hidden" name="fImagePath" value="@Model.fImagePath"  />
+                    </div>
+                    <div class="mb-3">
+                        <label>藥物中文名稱</label>
+                        @Html.TextBoxFor(m => m.fChName, null, new { @class = "form-control" })
+                    </div>
+                    <div class="mb-3">
+                        <label class="fs-4 text-danger">頻次</label><br />
+                        <input type="checkbox" name="fDayOfUse" value="早餐" />早餐<br />
+                        <input type="checkbox" name="fDayOfUse" value="午餐" />午餐<br />
+                        <input type="checkbox" name="fDayOfUse" value="晚餐" />晚餐<br />
+                        <input type="radio" name="fDayOfUse" value="飯前" />飯前<br />
+                        <input type="radio" name="fDayOfUse" value="飯後" />飯後<br />
+
+                    </div>
+                    <div class="mb-3">
+                        <label class="fs-4 text-danger">一次多少用量</label>
+                        <input type="text" name="fQuantityUse" class="form-control"/>
+                    </div> 
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary w-50 rounded-pill">送出</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

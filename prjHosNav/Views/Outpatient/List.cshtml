@@ -1,0 +1,47 @@
+﻿@using prjHosNav.Models;
+@model List<CHospital>
+@{
+    ViewBag.Title = "醫院門診查詢";
+}
+
+<style>
+    .blue{
+        color:#0094ff
+    }
+    .aquamarine {
+        color: aquamarine
+    }
+</style>
+
+<div style="background-color:#E8FBFF;" class="row justify-content-center">
+    <div class="my-5 bg-light w-75 shadow" style="border-radius:20px">
+        <div class="d-flex align-items-center px-3 pt-4 pm-3 ">
+            <h4 class="fw-bold me-auto">醫院列表</h4>           
+        </div>
+            <div class="row my-4">
+                @{
+                    int count = 0;                    
+                    foreach (CHospital o in Model)
+                    {
+                        count++;                        
+                        <div class="col-md-4 mt-3">
+                            <div class="card">           
+                                <img src="~/img/hospital/@o.hPhoto" width="100" height="150" onerror="this.src = '/img/hospital/default.jpg'"
+                                        class="card-img-top w-100" alt="...">
+                                <div class="card-body">
+                                    <h4>@o.hName</h4>
+                                    <p><span class="blue">聯絡電話：</span>@o.hPhone</p>
+                                    <p><span class="blue">醫院地址：</span>@o.hAddress</p>
+                                    <p><span class="blue">醫院網站：</span><a class="bg-danger text-white" target="_blank" href="@o.hWebsite">連結</a></p>
+                                    <p><span class="aquamarine fw-bold">看診進度：</span><a class="bg-danger text-white" target="_blank" href="@o.hProgress">查詢</a></p>
+                                    <p><span class="aquamarine fw-bold">門診網路掛號：</span><a class="bg-danger text-white"  target="_blank" href="@o.hOutpatient">進入</a></p>
+                                    <p>@Html.ActionLink("醫院科別", "診間", "Outpatient", new { id = o.hId }, new { @class = "btn btn-primary" })</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+    </div>
+</div>
+        

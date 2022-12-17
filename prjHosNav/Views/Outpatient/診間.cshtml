@@ -1,0 +1,96 @@
+﻿@using prjHosNav.Models;
+@model List<COutpatient>
+@{
+    ViewBag.Title = "門診科別";
+}
+
+<div style="background-color: #E8FBFF;" class="row justify-content-center" >
+    <div class="my-5 bg-light w-75 shadow" style="border-radius:20px">
+        <div class="d-flex align-items-center px-3 pt-4 pm-3">
+            <h4 class="fw-bold me-auto">門診列表</h4>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary mx-3" data-bs-toggle="modal" data-bs-target="#outpatientModal">
+                門診須知
+            </button>
+        </div>
+        
+        <!-- 門診須知Modal -->
+        <div class="modal fade" id="outpatientModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">門診須知</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table align="center" cellpadding="1" cellspacing="2">
+                            <tbody>
+                                <tr>
+                                    <th valign="top"><div align="center"><strong>初 診 者 </strong></div></th>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="top">
+                                        1.請先至<strong>服務台</strong>填寫初診病歷表。 <br>
+                                        2.直接至初診櫃檯排隊，由掛號員協助建檔並掛號。 <br>
+                                        3.就醫完後請持藥單至掛號處前抽票機取號碼單。<br>
+                                        4.聞聽廣播叫號至指定窗口辦理批價繳費。<br>
+                                        5.批完價後至藥局領藥。
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th valign="top"><div align="center"><strong>複 診 者 </strong></div></th>
+                                </tr>
+                                <tr class="black_13">
+                                    <td align="left" valign="top">
+                                        1.至掛號處前抽票機取號碼單。<br>
+                                        2.聞聽廣播叫號至指定窗口辦理掛號。<br>
+                                        3.掛完號後至門診區就醫。 <br>
+                                        4.就醫完後請持藥單至掛號處前抽票機取號碼單。<br>
+                                        5.聞聽廣播叫號至指定窗口辦理批價繳費。 <br>
+                                        6.批完價後至藥局領藥。
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th valign="top"><div align="center"><strong>預 約 者 </strong></div></th>
+                                </tr>
+                                <tr class="black_13">
+                                    <td align="left" valign="top">
+                                        1.逕至門診區就醫。<br>
+                                        2.就醫完後請持藥單至掛號處前抽票機取號碼單。<br>
+                                        3.聞聽廣播叫號至指定窗口辦理批價繳費。<br>
+                                        4.批完價後至藥局領藥。
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                        @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row my-4">
+            @{
+                int count = 13;
+                foreach (COutpatient o in Model)
+                {
+                    count++;
+                    <div class="col-md-4 col-lg-3 mt-3">
+                        <div class="card">
+                            <img src="~/img/doctor/@o.oPhoto" width="100" height="150" onerror="this.src = '/img/hospital/default.jpg'"
+                                    class="card-img-top w-100" alt="...">
+                            <div class="card-body">
+                                <h4>@o.oName</h4>
+                                <p><span class="red">看診醫師:</span>@o.oDoctor</p>
+                                <p>@Html.ActionLink("門診位置", "location", "Outpatient", new { id = @o.oid }, new { @class = "btn btn-primary" })</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+</div>

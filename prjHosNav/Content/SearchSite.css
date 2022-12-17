@@ -1,0 +1,83 @@
+﻿/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+table td {
+    min-width: 150px;
+    vertical-align: middle;
+}
+
+.headerS {
+    height: 300px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://cdn.pixabay.com/photo/2018/11/17/07/10/desktop-3820634_960_720.jpg") no-repeat center/cover;
+}
+/*svg*/
+.svg-container {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    width: 440px;
+    padding: 12px;
+    margin: 0 auto;
+    border-radius: 1%;
+    height: 580px;
+}
+/*hover*/
+path:hover {
+    cursor: pointer;
+    pointer-events: all;
+}
+
+#Vector:hover, #Vector_2:hover, #Vector_3:hover, #chest:hover, #belly:hover,
+#Vector_4:hover, #Vector_5:hover, #Vector_6:hover, #Vector_7:hover, #Vector_8:hover, #Vector_9:hover, #Vector_10:hover {
+    fill: red;
+}
+/*animation*/
+.svg-container svg {
+    width: 100%;
+}
+
+/*#belly {
+    animation: changeColor 3s infinite alternate;
+}*/
+
+@keyframes changeColor {
+    0% {
+        fill: red;
+    }
+
+    100% {
+        fill: blue;
+    }
+}
+
+#Vector_3 {
+    animation: rotate 2s infinite alternate;
+    transform-origin: right;
+    transform-box: fill-box;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(-8deg);
+    }
+
+    70% {
+        transform: rotate(2deg);
+    }
+}
+/*svg*/

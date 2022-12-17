@@ -1,0 +1,35 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title>Layer 1</title>
+  <rect stroke="#000" rx="30" id="svg_1" height="505.00004" width="634" y="52.59998" x="79.6" fill="#d7c0e5"/>
+  <text font-style="normal" font-weight="bold" transform="matrix(1.42701 0 0 1.42701 -138.179 -116.148)" stroke="#000" xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="24" id="svg_6" y="285.8916" x="317.29312" stroke-width="0" fill="#000000">醫療大樓</text>
+  <text font-style="normal" font-weight="bold" transform="matrix(1.42701 0 0 1.42701 -138.179 -116.148)" stroke="#000" xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="24" id="svg_2" y="318.12674" x="369.14966" stroke-width="0" fill="#000000">棟</text>
+  <ellipse stroke="#000" ry="23.5" rx="23.5" id="svg_7" cy="325.1" cx="362.1" stroke-width="0" fill="#974f9b"/>
+  <text transform="matrix(1.17297 0 0 1.17297 -60.9892 -53.9676)" stroke="#000" xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="24" id="svg_9" y="331.0424" x="350.89493" stroke-width="0" fill="#ffffff">C</text>
+  <rect rx="15" id="svg_11" height="68" width="100" y="359.6" x="499.6" stroke-width="0" stroke="#000" fill="#ffffff"/>
+  <rect rx="15" id="svg_12" height="68" width="100" y="63.76228" x="161.76228" stroke-width="0" stroke="#000" fill="#ffffff"/>
+  <rect rx="15" id="svg_13" height="68" width="100" y="58.6" x="387.6" stroke-width="0" stroke="#000" fill="#ffffff"/>
+  <rect rx="15" id="svg_40" height="68" width="100" y="484.6" x="264.6" stroke-width="0" stroke="#000" fill="#ffffff"/>
+  <rect stroke="#000" rx="15" id="svg_14" height="68" width="219.00001" y="482.6" x="377.59999" stroke-width="0" fill="#cccccc"/>
+  <rect rx="15" id="svg_15" height="68" width="100" y="180.6" x="507.6" stroke-width="0" stroke="#000" fill="#ffffff"/>
+  <rect rx="15" id="svg_19" height="68" width="100" y="359.1" x="385.6" stroke-width="0" stroke="#000" fill="#ffffff"/>
+  <rect rx="15" id="svg_16" height="68" width="100" y="180.6" x="386.6" stroke-width="0" stroke="#000" fill="#ffffff"/>
+  <rect rx="15" id="svg_20" height="68" width="100" y="359.1" x="265.6" stroke-width="0" stroke="#000" fill="#ffffff"/>
+  <rect rx="15" id="svg_17" height="68" width="100" y="180.6" x="271.6" stroke-width="0" stroke="#000" fill="#ffffff"/>
+  <rect rx="15" id="svg_21" height="68" width="100" y="359.1" x="150.6" stroke-width="0" stroke="#000" fill="#ffffff"/>
+  <rect rx="15" id="svg_10" height="68" width="100" y="180.6" x="157.6" stroke-width="0" stroke="#000" fill="#ffffff"/>
+  <text stroke="#000" xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="15" id="svg_34" y="400.6" x="168.6" stroke-width="0" fill="#000000">整形外科</text>
+  <text stroke="#000" xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="15" id="svg_35" y="402.6" x="272.6" stroke-width="0" fill="#000000">胸腔食道外科</text>
+  <text stroke="#000" xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="14" id="svg_36" y="399.6" x="385.6" stroke-width="0" fill="#000000">外傷及重症外科</text>
+  <text stroke="#000" xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="14" id="svg_30" y="399.6" x="506.6" stroke-width="0" fill="#000000">一般醫學外科</text>
+  <text stroke="#000" xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="15" id="svg_37" y="222.6" x="526.6" stroke-width="0" fill="#000000">胃腸內科</text>
+  <text stroke="#000" xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="15" id="svg_32" y="102.6" x="181.6" stroke-width="0" fill="#000000">兒童眼科</text>
+  <text stroke="#000" xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="15" id="svg_31" y="221.6" x="277.6" stroke-width="0" fill="#000000">大腸直腸外科</text>
+  <text stroke="#000" xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="15" id="svg_38" y="222.6" x="396.6" stroke-width="0" fill="#000000">肝膽胰內科</text>
+  <text stroke="#000" xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="14" id="svg_39" y="98.6" x="388.6" stroke-width="0" fill="#000000">過敏免疫風濕科</text>
+  <text stroke="#000" xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="14" id="svg_41" y="523.6" x="284.6" stroke-width="0" fill="#000000">小兒外科</text>
+  <text style="cursor: move;" stroke="#000" xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="14" id="svg_33" y="523.6" x="450.6" stroke-width="0" fill="#000000">等待區</text>
+  <text stroke="#000" xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="14" id="svg_29" y="221.6" x="156.6" stroke-width="0" fill="#000000">一般消化系外科</text>
+ </g>
+</svg>

@@ -1,0 +1,69 @@
+﻿@using prjHosNav.ViewModel;
+@model CMemberViewModel
+@{
+    ViewBag.Title = "會員註冊";
+}
+
+<div style="background-color:#E8FBFF;" class="vh-100 pt-5">
+    <div class="container shadow p-3 bg-body rounded">
+        <div class="row bg-white g-0 rounded-3 align-items-center">
+            <div class="col-md-7">
+                <img class="w-100 h-100 rounded-start" src="~/img/20944201.jpg" alt="">
+            </div>
+            <div class="col-md-5 mt-2">
+                @using (Html.BeginForm("會員註冊", "Member", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.txtEmail, htmlAttributes: new { @class = "form-label" })
+                        @Html.TextBox("txtEmail", null, new { @class = "form-control", @type = "email", @required = true ,@placeholder="請輸入信箱"})
+                        @Html.ValidationMessageFor(model => model.txtEmail, "", new { @class = "text-danger" })
+                        <p class="text-danger">@ViewBag.message</p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtPassword" class="form-label">密碼</label>
+                        @Html.TextBox("txtPassword", null, new { @class = "form-control", @type = "password", @required = true ,@placeholder = "請輸入密碼" })
+                        @Html.ValidationMessageFor(model => model.txtPassword, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="txtPwdCheck" class="form-label">確認密碼</label>
+                        @Html.TextBox("txtPwdCheck", null, new { @class = "form-control", @type = "password", @required = true })
+                        @Html.ValidationMessageFor(model => model.txtPwdCheck, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="txtName" class="form-label">姓名</label>
+                        @Html.TextBox("txtName", null, new { @class = "form-control", @type = "text", @required = true })
+                        @Html.ValidationMessageFor(model => model.txtName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtPhone" class="form-label">電話</label>
+                        @Html.TextBox("txtPhone", null, new { @class = "form-control", @type = "text" })
+                        @Html.ValidationMessageFor(model => model.txtPhone, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-2 d-flex">
+                        <p>性別 :</p>
+                        <div class="form-check ms-2">
+                            @Html.RadioButton("radioGender", "男", new { @class = "form-check-input" })
+                            男
+                        </div>
+                        <div class="form-check ms-2">
+                            @Html.RadioButton("radioGender", "女", new { @class = "form-check-input" })
+                            女
+                        </div>
+                    </div>
+                    <div class="mb-4 d-flex">
+                        <div class="col-md-6">
+                            <label for="inputState" class="form-label">縣市</label>
+                            @Html.DropDownListFor(model => model.selAddress, new SelectList(Enum.GetValues(typeof(Address))), "請選擇", new { @class = "form-select" })
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary w-50 rounded-pill">送出</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

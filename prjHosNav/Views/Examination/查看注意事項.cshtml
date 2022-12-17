@@ -1,0 +1,44 @@
+﻿@model prjHosNav.Models.CExamination
+
+@{
+    ViewBag.Title = "查看注意事項";
+}
+
+<style>
+    section {
+        /*height: 500px;*/
+        background-image: url('https://cdn.pixabay.com/photo/2015/05/29/19/17/study-789631_1280.jpg');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
+
+    .alpha-50 {
+        background: rgba(255, 255, 255, 0.9);
+    }
+</style>
+
+<section class="d-flex justify-content-center">
+    <div class="text-center">
+        <div class="card alpha-50">
+            <div class="card-body ">
+                <h4 class="fw-bold">@Model.fEName 檢查注意事項</h4>
+                <h3 style="color:#808080"> Notice About @Model.fEName.</h3>                
+                <div class="row">
+                    <div class="shadow" style="border-radius:20px">
+                        <p>
+                            <input type="hidden" name="fEId" value="@Model.fEId" />
+                        </p>
+                        <p>
+                            <iframe width="500" height="280" src="https://www.youtube.com/embed/o3u2n7fbG5Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </p>
+                        <p>注意事項<br>
+                            @Model.fENotice
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
